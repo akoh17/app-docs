@@ -1,6 +1,6 @@
 # app-docs
 
-Support pages and privacy policies for my iOS apps, served by GitHub Pages.
+Support pages and privacy policies for my iOS apps and Facebook apps, served by GitHub Pages.
 
 Published at **https://akoh17.github.io/app-docs/**
 
