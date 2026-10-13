@@ -14,6 +14,10 @@ index.html            hub — links to every app
 textgrab/
   index.html          support page  → /app-docs/textgrab/
   privacy.html        privacy policy → /app-docs/textgrab/privacy.html
+videouploader/
+  index.html          support page  → /app-docs/videouploader/
+  privacy.html        privacy policy → /app-docs/videouploader/privacy.html
+                      (Meta app "Data deletion instructions URL": privacy.html#data-deletion)
 ```
 
 ## Pages setup
