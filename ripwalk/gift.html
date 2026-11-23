@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>A Ripwalk card for you</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { font: 17px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; max-width: 520px;
+         margin: 0 auto; padding: 48px 22px; color: #1D2B22; background: #F6F2E7; text-align: center; }
+  @media (prefers-color-scheme: dark) { body { color: #EEF3EA; background: #0F1A14; } }
+  .gift { font-size: 56px; }
+  h1 { font-size: 30px; line-height: 1.2; margin: 14px 0 8px; }
+  p { color: #5D6B61; } @media (prefers-color-scheme: dark) { p { color: #A9B8AD; } }
+  a.button { display: block; margin: 14px 0; padding: 16px; border-radius: 18px; font-weight: 700; font-size: 18px;
+             text-decoration: none; color: #fff; background: #1F8F5F; }
+  a.second { background: rgba(31,143,95,.14); color: #146B46; }
+  @media (prefers-color-scheme: dark) { a.second { color: #3FCB8C; } }
+  .small { font-size: 14px; }
+</style>
+</head>
+<body>
+<div class="gift">🎁</div>
+<h1 id="title">A friend sent you a Ripwalk card</h1>
+<p id="lead">Ripwalk is a walking game: every 2,000 steps earns a pack of nature cards. Open this gift in the app to add the card to your field guide.</p>
+<a class="button" id="open" href="ripwalk://open">Open in Ripwalk</a>
+<a class="button second" id="store" href="#" hidden>Get Ripwalk</a>
+<p class="small">New to Ripwalk? Install it, then come back to this message and tap the link again. Each gift can be added once.</p>
+<script>
+  // The gift code travels after the #, so it is never sent to this server. The app checks the code itself;
+  // this page only reads the card and the sender's first name to say what the gift is.
+  // Set to the App Store link once Ripwalk is live; until then the button stays hidden.
+  const STORE_URL = '';
+  if (STORE_URL) { const store = document.getElementById('store'); store.href = STORE_URL; store.hidden = false; }
+  const NAMES = {"leaf.oak": "Oak Leaf", "leaf.maple": "Maple Leaf", "leaf.birch": "Birch Leaf", "leaf.clover": "Clover", "leaf.willow": "Willow Leaf", "leaf.fern": "Fern Frond", "leaf.holly": "Holly Sprig", "leaf.ginkgo": "Ginkgo Leaf", "leaf.aspen": "Golden Aspen", "leaf.sweetgum": "Sweetgum Star", "leaf.skeleton": "Skeleton Leaf", "leaf.fourleaf": "Four-Leaf Clover", "stone.pebble": "River Pebble", "stone.quartz": "Quartz", "stone.pyrite": "Pyrite", "stone.jasper": "Red Jasper", "stone.amethyst": "Amethyst", "stone.rosequartz": "Rose Quartz", "stone.obsidian": "Obsidian", "stone.agate": "Agate", "stone.malachite": "Malachite", "stone.geode": "Geode", "stone.meteorite": "Meteorite", "stone.blackopal": "Black Opal", "wing.cabbagewhite": "Cabbage White", "wing.paintedlady": "Painted Lady", "wing.sulphur": "Clouded Sulphur", "wing.commonblue": "Common Blue", "wing.monarch": "Monarch", "wing.redadmiral": "Red Admiral", "wing.swallowtail": "Tiger Swallowtail", "wing.peacock": "Peacock Butterfly", "wing.luna": "Luna Moth", "wing.morpho": "Blue Morpho", "wing.atlas": "Atlas Moth", "wing.birdwing": "Queen Alexandra's Birdwing", "fungi.field": "Field Mushroom", "fungi.puffball": "Puffball", "fungi.turkeytail": "Turkey Tail", "fungi.inkcap": "Shaggy Ink Cap", "fungi.flyagaric": "Fly Agaric", "fungi.chanterelle": "Chanterelle", "fungi.oyster": "Oyster Mushroom", "fungi.morel": "Morel", "fungi.amethyst": "Amethyst Deceiver", "fungi.lionsmane": "Lion's Mane", "fungi.indigo": "Indigo Milk Cap", "fungi.ghost": "Ghost Fungus", "bloom.daisy": "Daisy", "bloom.dandelion": "Dandelion", "bloom.buttercup": "Buttercup", "bloom.violet": "Violet", "bloom.poppy": "Poppy", "bloom.bluebell": "Bluebell", "bloom.susan": "Black-Eyed Susan", "bloom.cherry": "Cherry Blossom", "bloom.waterlily": "Water Lily", "bloom.passion": "Passionflower", "bloom.bluepoppy": "Himalayan Blue Poppy", "bloom.queennight": "Queen of the Night", "sky.cumulus": "Cumulus Cloud", "sky.sunset": "Golden Sunset", "sky.crescent": "Crescent Moon", "sky.eveningstar": "Evening Star", "sky.rainbow": "Rainbow", "sky.fullmoon": "Full Moon", "sky.snowflake": "Snowflake", "sky.shootingstar": "Shooting Star", "sky.lightning": "Lightning", "sky.comet": "Comet", "sky.aurora": "Aurora", "sky.eclipse": "Total Solar Eclipse"};
+  const code = location.hash.slice(1);
+  if (code) {
+    document.getElementById('open').href = 'ripwalk://gift/' + code;
+    try {
+      const b64 = code.replace(/-/g, '+').replace(/_/g, '/') + '==='.slice((code.length + 3) % 4);
+      const bytes = Uint8Array.from(atob(b64), c => c.charCodeAt(0));
+      let i = 7;
+      const cardLen = bytes[i++];
+      const card = new TextDecoder().decode(bytes.slice(i, i + cardLen)); i += cardLen;
+      const nameLen = bytes[i++];
+      const from = new TextDecoder().decode(bytes.slice(i, i + nameLen)).trim();
+      const cardName = NAMES[card];
+      if (cardName) {
+        document.getElementById('title').textContent = (from || 'A friend') + ' sent you a ' + cardName;
+        document.title = cardName + ' from ' + (from || 'a friend');
+      }
+    } catch (e) {}
+  }
+</script>
+</body>
+</html>
