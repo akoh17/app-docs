@@ -19,10 +19,10 @@
 </head>
 <body>
 <h1>Privacy Policy</h1>
-<p class="muted">VideoUploader · Last updated: 16 October 2026</p>
+<p class="muted">VideoUploader · Last updated: 26 November 2026</p>
 
 <p><strong>VideoUploader is a personal publishing tool. It is run by the owner of the Facebook Pages "Peakpandafam" and
-"GridironAnime", the Instagram accounts @peakpandafam and @gridironanime, and the owner's own YouTube channels, on the owner's own computer, to publish the owner's own
+"GridironAnime", the Instagram accounts @peakpandafam and @gridironanime, and the owner's own YouTube channels and TikTok accounts, on the owner's own computer, to publish the owner's own
 videos to the owner's own accounts. It is not offered to the public, has no sign-up, and has no users other than the owner.</strong></p>
 
 <h2>What the app accesses</h2>
@@ -36,8 +36,9 @@ described:</p>
   <tr><td><code>instagram_basic</code></td><td>reading the linked Instagram account's ID and username</td></tr>
   <tr><td><code>instagram_content_publish</code></td><td>publishing the owner's Reels to the owner's Instagram account</td></tr>
   <tr><td><code>business_management</code></td><td>finding the Instagram account linked to the owner's Page</td></tr>
+  <tr><td><code>instagram_manage_insights</code>, <code>read_insights</code></td><td>reading the view, like, comment, share and save counts of the owner's own posts, shown to the owner in VideoUploader's Stats page</td></tr>
 </table>
-<p>It reads nothing else: no messages, no comments, no followers, no friends, no insights, and no data about any other person.</p>
+<p>It reads nothing else: no messages, no comment text, no follower lists, no friends, and no data about any other person.</p>
 
 <h2 id="youtube">YouTube (Google)</h2>
 <p>VideoUploader uses the <strong>YouTube API Services</strong>. When the owner connects their Google account,
@@ -45,9 +46,10 @@ VideoUploader asks Google for these permissions (OAuth scopes) and uses each onl
 <table>
   <tr><th>Permission</th><th>Used for</th></tr>
   <tr><td><code>youtube.upload</code></td><td>uploading the owner's own videos to the owner's own YouTube channel, with the title, description, tags and privacy setting the owner chooses</td></tr>
-  <tr><td><code>youtube.readonly</code></td><td>reading the connected channel's name and ID, so the app can show which channel is connected</td></tr>
+  <tr><td><code>youtube.readonly</code></td><td>reading the connected channel's name and ID, so the app can show which channel is connected, and the public view, like and comment counts of the owner's own videos for the Stats page</td></tr>
+  <tr><td><code>youtube</code></td><td>adding a video the owner just uploaded to a playlist on the owner's own channel that the owner names; nothing else on the channel is changed</td></tr>
 </table>
-<p>It reads nothing else from YouTube or Google: no other videos, no comments, no subscribers, no analytics, no
+<p>It reads nothing else from YouTube or Google: no other people's videos, no comment text, no subscriber lists, no
 account details beyond the channel's name and ID, and no data about any other person.</p>
 <p>By using VideoUploader with YouTube you agree to be bound by the
 <a href="https://www.youtube.com/t/terms">YouTube Terms of Service</a>. Google's handling of your data is described in the
@@ -58,25 +60,42 @@ including the Limited Use requirements.</p>
 <p>You can revoke VideoUploader's access to your Google account at any time on Google's security settings page:
 <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</p>
 
+<h2 id="tiktok">TikTok</h2>
+<p>When the owner connects one of their own TikTok accounts, VideoUploader asks TikTok for these permissions (scopes)
+and uses each only as described:</p>
+<table>
+  <tr><th>Permission</th><th>Used for</th></tr>
+  <tr><td><code>user.info.basic</code></td><td>reading the account's display name, avatar and ID, so the app can show which account is connected</td></tr>
+  <tr><td><code>user.info.profile</code></td><td>reading the account's username, so each post goes to the right one of the owner's accounts</td></tr>
+  <tr><td><code>video.upload</code></td><td>sending the owner's own video to the owner's TikTok inbox as a draft, which the owner finishes and posts in the TikTok app</td></tr>
+  <tr><td><code>video.publish</code></td><td>posting the owner's own video to the owner's own profile with the caption and privacy setting the owner chooses</td></tr>
+  <tr><td><code>user.info.stats</code></td><td>reading the account's follower, like and video counts for the Stats page</td></tr>
+  <tr><td><code>video.list</code></td><td>reading the owner's own public videos and their view, like, comment and share counts for the Stats page</td></tr>
+</table>
+<p>It reads nothing else from TikTok: no messages, no comment text, no follower lists, and no data about any other person.
+TikTok's handling of data is described in the <a href="https://www.tiktok.com/legal/privacy-policy">TikTok Privacy Policy</a>,
+and posts follow the <a href="https://www.tiktok.com/legal/terms-of-service">TikTok Terms of Service</a>.</p>
+
 <h2>Data stored on the owner's computer</h2>
 <p>Everything VideoUploader keeps stays in its <code>data</code> folder on the owner's own computer:</p>
 <ul>
-  <li>the login tokens Meta and Google return when the owner connects, so the owner does not have to log in for every post;</li>
-  <li>the Page and Instagram account the owner chose (ID and name), and the connected YouTube channel (ID and name);</li>
+  <li>the login tokens Meta, Google and TikTok return when the owner connects, so the owner does not have to log in for every post;</li>
+  <li>the Page and Instagram account the owner chose (ID and name), the connected YouTube channels and TikTok accounts (ID and name);</li>
+  <li>the view, like and other counts read for the Stats page;</li>
   <li>a list of the owner's own posts: the video's file name, the caption, the time, and each post's status and link;</li>
   <li>a copy of each video the owner uploads, until it is posted.</li>
 </ul>
 <p>There are no servers on our side and no copy is kept anywhere else. Videos and captions are sent only to Meta's
-official Graph API and YouTube's official Data API, to be published on the owner's accounts.</p>
+official Graph API, YouTube's official Data API and TikTok's official Content Posting API, to be published on the owner's accounts.</p>
 
 <h2>No data collection</h2>
 <p>VideoUploader does not collect, read, store, sell, rent or share data about anyone other than the owner — not
 viewers, followers, or anyone who comments on or reacts to a post. There are no ads, no tracking cookies, no analytics,
-and no third-party SDKs. Nothing is shared with anyone except sending the owner's own posts to Meta and YouTube to publish.</p>
+and no third-party SDKs. Nothing is shared with anyone except sending the owner's own posts to Meta, YouTube and TikTok to publish.</p>
 
 <h2>How long data is kept</h2>
 <p>Login tokens are kept until the owner disconnects or they expire (Meta's tokens last about 60 days; Google's stay valid
-until the owner disconnects or revokes access). The post list is
+until the owner disconnects or revokes access; TikTok's last up to a year). The post list is
 kept until the owner deletes entries in VideoUploader's History or deletes the <code>data</code> folder. Uploaded videos
 stay in the <code>data</code> folder until the owner deletes them.</p>
 
@@ -88,10 +107,12 @@ stay in the <code>data</code> folder until the owner deletes them.</p>
       <strong>Apps and websites</strong>), find <strong>VideoUploader</strong>, and press <strong>Remove</strong>.</li>
   <li>Remove the app's access in Google: open <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>,
       choose <strong>VideoUploader</strong>, and press <strong>Delete all connections</strong> (or <strong>Remove access</strong>).</li>
+  <li>Remove the app's access in TikTok: in the TikTok app, open <strong>Settings and privacy</strong>, find the list of
+      apps connected to the account, choose <strong>VideoUploader</strong>, and remove it.</li>
   <li>Delete VideoUploader's <code>data</code> folder on the owner's computer. This deletes the post list and any uploaded videos.</li>
 </ol>
-<p>Nothing else needs deleting, because nothing is kept anywhere else. Posts already published to Instagram, Facebook
-or YouTube are controlled by those platforms: delete them there. To request deletion or ask any question about your data, email
+<p>Nothing else needs deleting, because nothing is kept anywhere else. Posts already published to Instagram, Facebook,
+YouTube or TikTok are controlled by those platforms: delete them there. To request deletion or ask any question about your data, email
 <a href="mailto:alexaoh123@gmail.com">alexaoh123@gmail.com</a>; we reply within 30 days.</p>
 
 <h2>Children's privacy</h2>
